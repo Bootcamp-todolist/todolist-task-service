@@ -1,4 +1,4 @@
-package com.todolist.task.service.domain.models;
+package com.todolist.task.service.application.models;
 
 import com.todolist.task.service.domain.enums.Priority;
 import com.todolist.task.service.domain.enums.TaskStatus;
@@ -14,19 +14,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Task {
+public class TaskDTO {
   private String id;
+
   private String title;
   private String description;
   private Priority priority;
   private TaskStatus status;
   private Instant dueDate;
-  private boolean deleted;
-  private Instant createdTime;
-
-  private String createdBy;
-
-  private Instant updatedTime;
-
-  private String updatedBy;
 }
