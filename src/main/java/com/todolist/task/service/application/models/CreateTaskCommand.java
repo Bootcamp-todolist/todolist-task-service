@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateMemberCommand {
+public class CreateTaskCommand {
   private String username;
   private String password;
 
