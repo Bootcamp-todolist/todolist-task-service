@@ -17,4 +17,5 @@ public abstract class TaskPersistModelMapper {
   public abstract TaskPersistModel toPersistModel(Task task);
 
   public abstract List<Task> toDomain(List<TaskPersistModel> taskPersistModels);
+  public abstract Task toDomain(TaskPersistModel taskPersistModel);
 }

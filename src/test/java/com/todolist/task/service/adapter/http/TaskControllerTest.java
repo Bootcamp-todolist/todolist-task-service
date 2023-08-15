@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,15 +35,15 @@ class TaskControllerTest extends HttpControllerTest {
         .priority(Priority.HIGH)
         .build();
 
-    doNothing().when(taskApplicationService).createTask(any(),any());
+    doNothing().when(taskApplicationService).createTask(any(), any());
 
     mockMvc.perform(post("/task")
-            .header(USER_ID,user)
+            .header(USER_ID, user)
             .contentType(MediaType.APPLICATION_JSON)
             .content(new ObjectMapper().writeValueAsString(createTaskCommand)))
         .andExpect(status().isOk());
 
-    verify(taskApplicationService).createTask(any(),any());
+    verify(taskApplicationService).createTask(any(), any());
   }
 
   @Test
@@ -51,12 +52,26 @@ class TaskControllerTest extends HttpControllerTest {
     TaskDTO task1 = TaskDTO.builder().build();
     TaskDTO task2 = TaskDTO.builder().build();
 
-    doReturn(List.of(task1,task2)).when(taskApplicationService).getAllTasks(user);
+    doReturn(List.of(task1, task2)).when(taskApplicationService).getAllTasks(user);
 
     mockMvc.perform(get("/task")
-            .header(USER_ID,user))
+            .header(USER_ID, user))
         .andExpect(status().isOk());
 
     verify(taskApplicationService).getAllTasks(any());
+  }
+
+  @Test
+  void should_delete_task() throws Exception {
+    String taskId = "task123";
+    String userId = "user123";
+
+    doNothing().when(taskApplicationService).deleteTask(taskId, userId);
+
+    mockMvc.perform(delete("/task/" + taskId)
+            .header(USER_ID, userId))
+        .andExpect(status().isOk());
+
+    verify(taskApplicationService).deleteTask(taskId, userId);
   }
 }

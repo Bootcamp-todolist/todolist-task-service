@@ -5,7 +5,9 @@ import java.util.List;
 
 public interface TaskRepository {
 
-  void createTask(Task task);
+  void save(Task task);
 
   List<Task> findByCreatedByAndDeletedFalse(String user);
+
+  Task findById(String taskId);
 }

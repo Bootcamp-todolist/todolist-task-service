@@ -1,9 +1,8 @@
 package com.todolist.task.service.exception;
 
 public enum Error {
-  USER_NOT_EXIST("user_not_exist"),
-  REPEATED_USER_NAME("repeated_user_name"),
-  AUTHORIZE_FAILED("authorize_failed");
+  TASK_NOT_FOUND("task_not_found"),
+  NO_PERMISSION("no_permission");
 
   private final String value;
 

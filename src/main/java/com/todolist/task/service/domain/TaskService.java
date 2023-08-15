@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TaskService {
   private final TaskRepository taskRepository;
-  public void createTask(Task task) {
-    taskRepository.createTask(task);
+  public void save(Task task) {
+    taskRepository.save(task);
   }
 
   public List<Task> findByCreatedByAndDeletedFalse(String user) {
     return taskRepository.findByCreatedByAndDeletedFalse(user);
+  }
+
+  public Task findById(String taskId) {
+    return taskRepository.findById(taskId);
   }
 }
