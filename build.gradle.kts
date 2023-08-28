@@ -29,7 +29,9 @@ dependencies {
     implementation("mysql:mysql-connector-java:8.0.33")
     implementation("io.github.microutils:kotlin-logging:3.0.5")
 
+    testImplementation("com.h2database:h2:2.2.220")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
 }
 
 tasks.withType<KotlinCompile> {
